@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Solution {
 
-    public static final String FILE_PATH = "C:\\Users\\mdeze\\Documents\\Projets\\advent-of-code\\src\\main\\resources\\entries.txt";
+    public static final String FILE_PATH = "C:\\Users\\mdeze\\Documents\\Projets\\advent-of-code\\src\\main\\resources\\day1\\entries.txt";
 
     public static void main(String[] args) throws Exception {
 
