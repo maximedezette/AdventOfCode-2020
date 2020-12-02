@@ -11,7 +11,12 @@ public class Solution {
         FileManager fileManager = new FileManager();
         List<Password> passwordList = fileManager.getEntries(FILE_PATH);
         PasswordManager passwordManager = new PasswordManager();
-        System.out.println(passwordManager.getNumberOfValidPassword(passwordList));
+
+        // part 1
+        System.out.println(passwordManager.getNumberOfValidPasswordAccordingToFirstRule(passwordList));
+
+        // part 2
+        System.out.println(passwordManager.getNumberOfValidPasswordAccordingToSecondRule(passwordList));
 
     }
 }

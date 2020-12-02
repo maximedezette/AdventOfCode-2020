@@ -7,10 +7,14 @@ public class PasswordMapper {
         String[] splittedLine = line.split(" ");
         String[] splittedOccurences = splittedLine[0].split("-");
         Password password = new Password();
-        password.setMinOccurrence(Integer.parseInt(splittedOccurences[0]));
-        password.setMaxOccurrence(Integer.parseInt(splittedOccurences[1]));
-        password.setCharacter(splittedLine[1].charAt(0));
-        password.setSequence(splittedLine[2]);
+
+        int firstFigure = Integer.parseInt(splittedOccurences[0]);
+        int secondFigure = Integer.parseInt(splittedOccurences[1]);
+
+        password.setFirstFigureInRule(firstFigure);
+        password.setSecondFigureInRule(secondFigure);
+        password.setCharacterInRule(splittedLine[1].charAt(0));
+        password.setPasswordString(splittedLine[2]);
 
         return password;
     }

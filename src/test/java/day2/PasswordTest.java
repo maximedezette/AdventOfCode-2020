@@ -8,26 +8,55 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class PasswordTest {
 
     @Test
-    void shouldBeValidWhenFollowRule() {
+    void shouldBeValidWhenFollowFirstRule() {
         Password password = new Password();
-        password.setMinOccurrence(1);
-        password.setMaxOccurrence(3);
-        password.setCharacter('a');
-        password.setSequence("abcde");
+        password.setFirstFigureInRule(1);
+        password.setSecondFigureInRule(3);
+        password.setCharacterInRule('a');
+        password.setPasswordString("abcde");
 
         assertThat(password.isValidAccordingToFirstRule()).isTrue();
 
     }
 
     @Test
-    void shouldBeInvalidWhenDontFollowRule() {
+    void shouldBeInvalidWhenDontFollowFirstRule() {
         Password password = new Password();
-        password.setMinOccurrence(1);
-        password.setMaxOccurrence(3);
-        password.setCharacter('b');
-        password.setSequence("cdefg");
+        password.setFirstFigureInRule(1);
+        password.setSecondFigureInRule(3);
+        password.setCharacterInRule('b');
+        password.setPasswordString("cdefg");
 
         assertThat(password.isValidAccordingToFirstRule()).isFalse();
 
+    }
+
+    @Test
+    void shouldBeValidWhenFollowSecondRule(){
+        Password password = new Password();
+        password.setFirstFigureInRule(1);
+        password.setSecondFigureInRule(3);
+        password.setCharacterInRule('a');
+        password.setPasswordString("abcde");
+
+        assertThat(password.isValidAccordingToSecondRule()).isTrue();
+    }
+
+    @Test
+    void shouldBeInvalidWhenDontFollowSecondRule(){
+        Password password = new Password();
+        password.setFirstFigureInRule(1);
+        password.setSecondFigureInRule(3);
+        password.setCharacterInRule('b');
+        password.setPasswordString("cdefg");
+
+        Password secondIncorrectPassword = new Password();
+        secondIncorrectPassword.setFirstFigureInRule(2);
+        secondIncorrectPassword.setSecondFigureInRule(9);
+        secondIncorrectPassword.setCharacterInRule('c');
+        secondIncorrectPassword.setPasswordString("ccccccccc");
+
+        assertThat(password.isValidAccordingToSecondRule()).isFalse();
+        assertThat(secondIncorrectPassword.isValidAccordingToSecondRule()).isFalse();
     }
 }

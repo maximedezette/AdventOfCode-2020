@@ -4,47 +4,50 @@ import java.util.Objects;
 
 public class Password {
 
-    private int minOccurrence;
-    private int maxOccurrence;
-    private char character;
-    private String sequence;
+    private int firstFigureInRule;
+    private int secondFigureInRule;
+    private char characterInRule;
+    private String passwordString;
 
-    public int getMinOccurrence() {
-        return minOccurrence;
-    }
 
-    public void setMinOccurrence(int minOccurrence) {
-        this.minOccurrence = minOccurrence;
-    }
-
-    public int getMaxOccurrence() {
-        return maxOccurrence;
-    }
-
-    public void setMaxOccurrence(int maxOccurrence) {
-        this.maxOccurrence = maxOccurrence;
-    }
-
-    public char getCharacter() {
-        return character;
-    }
-
-    public void setCharacter(char character) {
-        this.character = character;
+    public void setFirstFigureInRule(int firstFigureInRule) {
+        this.firstFigureInRule = firstFigureInRule;
     }
 
 
-    public String getSequence() {
-        return sequence;
+    public void setSecondFigureInRule(int secondFigureInRule) {
+        this.secondFigureInRule = secondFigureInRule;
     }
 
-    public void setSequence(String sequence) {
-        this.sequence = sequence;
+
+    public void setCharacterInRule(char characterInRule) {
+        this.characterInRule = characterInRule;
     }
+
+
+    public void setPasswordString(String passwordString) {
+        this.passwordString = passwordString;
+    }
+
     public boolean isValidAccordingToFirstRule() {
-        long numberOfSpecifiedLetter = sequence.chars().filter( (c) -> c == character).count();
+        long numberOfSpecifiedLetter = passwordString.chars().filter((c) -> c == characterInRule).count();
 
-        return (numberOfSpecifiedLetter >= minOccurrence && numberOfSpecifiedLetter <= maxOccurrence);
+        return (numberOfSpecifiedLetter >= firstFigureInRule && numberOfSpecifiedLetter <= secondFigureInRule);
+    }
+
+    public boolean isValidAccordingToSecondRule() {
+        return charIsPresentOnlyAtFirstPosition() ||
+                charIsPresentOnlyAtSecondPosition();
+    }
+
+    private boolean charIsPresentOnlyAtSecondPosition() {
+        return passwordString.charAt(firstFigureInRule - 1) != characterInRule
+                && passwordString.charAt(secondFigureInRule - 1) == characterInRule;
+    }
+
+    private boolean charIsPresentOnlyAtFirstPosition() {
+        return passwordString.charAt(firstFigureInRule - 1) == characterInRule
+                && passwordString.charAt(secondFigureInRule - 1) != characterInRule;
     }
 
     @Override
@@ -52,24 +55,26 @@ public class Password {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Password password = (Password) o;
-        return minOccurrence == password.minOccurrence &&
-                maxOccurrence == password.maxOccurrence &&
-                character == password.character &&
-                Objects.equals(sequence, password.sequence);
+        return firstFigureInRule == password.firstFigureInRule &&
+                secondFigureInRule == password.secondFigureInRule &&
+                characterInRule == password.characterInRule &&
+                Objects.equals(passwordString, password.passwordString);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(minOccurrence, maxOccurrence, character, sequence);
+        return Objects.hash(firstFigureInRule, secondFigureInRule, characterInRule, passwordString);
     }
 
     @Override
     public String toString() {
         return "Password{" +
-                "minOccurrence=" + minOccurrence +
-                ", maxOccurrence=" + maxOccurrence +
-                ", character=" + character +
-                ", sequence='" + sequence + '\'' +
+                "minOccurrence=" + firstFigureInRule +
+                ", maxOccurrence=" + secondFigureInRule +
+                ", character=" + characterInRule +
+                ", sequence='" + passwordString + '\'' +
                 '}';
     }
+
+
 }

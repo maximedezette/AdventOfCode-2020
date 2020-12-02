@@ -11,10 +11,10 @@ public class PasswordMapperTest {
     @Test
     void shouldMapLineToCorrespondingPassword(){
         Password expectedPassword = new Password();
-        expectedPassword.setMinOccurrence(1);
-        expectedPassword.setCharacter('a');
-        expectedPassword.setMaxOccurrence(3);
-        expectedPassword.setSequence("abcde");
+        expectedPassword.setFirstFigureInRule(1);
+        expectedPassword.setCharacterInRule('a');
+        expectedPassword.setSecondFigureInRule(3);
+        expectedPassword.setPasswordString("abcde");
 
         assertThat(PasswordMapper.toPassword("1-3 a: abcde"))
                 .isEqualTo(expectedPassword);
@@ -23,10 +23,10 @@ public class PasswordMapperTest {
     @Test
     void shouldMapLineToCorrespondingPasswordWhenTwoFiguresOccurence(){
         Password expectedPassword = new Password();
-        expectedPassword.setMinOccurrence(12);
-        expectedPassword.setCharacter('s');
-        expectedPassword.setMaxOccurrence(15);
-        expectedPassword.setSequence("dsjqsshdssbssstsssss");
+        expectedPassword.setFirstFigureInRule(12);
+        expectedPassword.setCharacterInRule('s');
+        expectedPassword.setSecondFigureInRule(15);
+        expectedPassword.setPasswordString("dsjqsshdssbssstsssss");
 
         assertThat(PasswordMapper.toPassword("12-15 s: dsjqsshdssbssstsssss"))
                 .isEqualTo(expectedPassword);

@@ -14,11 +14,20 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class PasswordManagerTest {
 
     @Test
-    void shouldGetCorrectAmountOfValidPassword() throws FileNotFoundException {
+    void shouldGetCorrectAmountOfValidPasswordFirstRule() throws FileNotFoundException {
         PasswordManager passwordManager = new PasswordManager();
         FileManager fileManager = new FileManager();
         List<Password> passwordList = fileManager.getEntries(FILE_PATH);
-        assertThat(passwordManager.getNumberOfValidPassword(passwordList))
+        assertThat(passwordManager.getNumberOfValidPasswordAccordingToFirstRule(passwordList))
                 .isEqualTo(2);
+    }
+
+    @Test
+    void shouldGetCorrectAmountOfValidPasswordSecondRule() throws FileNotFoundException {
+        PasswordManager passwordManager = new PasswordManager();
+        FileManager fileManager = new FileManager();
+        List<Password> passwordList = fileManager.getEntries(FILE_PATH);
+        assertThat(passwordManager.getNumberOfValidPasswordAccordingToSecondRule(passwordList))
+                .isEqualTo(1);
     }
 }
