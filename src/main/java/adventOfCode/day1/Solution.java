@@ -11,7 +11,7 @@ public class Solution {
         FileManager fileManager = new FileManager();
         ExpenseCalculator expenseCalculator = new ExpenseCalculator();
         List<Integer> entries = fileManager.getEntries(FILE_PATH);
-        System.out.println(expenseCalculator.getMultiplicationSumOfThree(entries));
+        System.out.println(expenseCalculator.getMultiplicationSumOfN(entries,3));
 
 
     }
