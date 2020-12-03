@@ -1,5 +1,6 @@
 package adventOfCode.day3;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Solution {
@@ -14,5 +15,18 @@ public class Solution {
         Slope slope = new Slope(3,1);
 
         System.out.println(slopeManager.countTree(slope));
+
+        /**
+         * PART 2
+         */
+
+        List<Slope> slopes = new ArrayList<>();
+        slopes.add(new Slope(1,1));
+        slopes.add(new Slope(3,1));
+        slopes.add(new Slope(5,1));
+        slopes.add(new Slope(7,1));
+        slopes.add(new Slope(1,2));
+
+        System.out.println(slopeManager.multiplyNumberOfTrees(slopes));
     }
 }

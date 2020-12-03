@@ -42,7 +42,7 @@ public class SlopeManager {
     public int countTree(Slope slope) {
         int numberOfTree = 0;
         Position startingPosition = new Position(0,0);
-        for(int i = 0; i < area.size() -1 ; i++){
+        for(int i = 0; i < area.size() -1; i = i + slope.getDown()){
             if(getNextPositionContent(startingPosition,slope) == TREE){
                 numberOfTree++;
             }
@@ -52,4 +52,12 @@ public class SlopeManager {
     }
 
 
+    public int multiplyNumberOfTrees(List<Slope> slopes) {
+        int multiplication = 1;
+        for (Slope slope : slopes) {
+            multiplication *= countTree(slope);
+        }
+
+        return multiplication;
+    }
 }

@@ -8,6 +8,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.List;
 
 import static day3.FileManagerTest.FILE_PATH;
@@ -77,9 +78,24 @@ public class SlopeManagerTest {
     }
 
     @Test
-    void shouldGetNumberOfTrees() throws FileNotFoundException {
+    void shouldGetNumberOfTreesOnSingleSlope() {
         assertThat(slopeManager.countTree(slope))
                 .isEqualTo(7);
+
+    }
+
+    @Test
+    void shouldGetMultiplicationOfNumberOfTreesOnMultipleSlope() {
+        List<Slope> slopes = new ArrayList<>();
+        slopes.add(new Slope(1,1));
+        slopes.add(new Slope(3,1));
+        slopes.add(new Slope(5,1));
+        slopes.add(new Slope(7,1));
+        slopes.add(new Slope(1,2));
+
+
+        assertThat(slopeManager.multiplyNumberOfTrees(slopes))
+                .isEqualTo(336);
 
     }
 }
