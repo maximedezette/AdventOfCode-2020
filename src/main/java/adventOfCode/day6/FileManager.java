@@ -12,32 +12,55 @@ public class FileManager {
         Scanner sc = new Scanner(file);
         List<String> entries = new ArrayList<>();
 
-            String answers = "";
-        while (sc.hasNextLine()){
+        String answers = "";
+        int groupSize = 0;
+        while (sc.hasNextLine()) {
             String currentLine = sc.nextLine();
-            if(!currentLine.isEmpty()){
-                answers = addStringWihoutDuplicateChats(answers,currentLine);
-            }else{
+            if (!currentLine.isEmpty()) {
+                groupSize++;
+                answers += currentLine;
+
+            } else {
+                answers = keepOnlyUnanimousAnswers(answers,groupSize);
                 entries.add(answers);
                 answers = "";
+                groupSize = 0;
             }
+
         }
 
-        if(!answers.isEmpty()){
+        if (!answers.isEmpty()) {
+            answers = keepOnlyUnanimousAnswers(answers,groupSize);
             entries.add(answers);
         }
 
         return entries;
     }
+    private String keepOnlyUnanimousAnswers(String answers, int groupSize) {
+        String unanimousAnswers = "";
+        for (int i = 0; i < answers.length(); i++) {
+            int finalI = i;
+            if(answers.chars()
+                    .filter(c -> c == answers.charAt(finalI))
+                    .count() == groupSize){
+                unanimousAnswers = addWithoutDuplicates(unanimousAnswers, String.valueOf( answers.charAt(finalI)));
+            }
+        }
 
-    private String addStringWihoutDuplicateChats(String line, String lineToAdd) {
+
+        return unanimousAnswers;
+    }
+
+    private String addWithoutDuplicates(String line, String lineToAdd) {
         String updatedLine = line;
-        for(int i=0; i<lineToAdd.length();i++){
-            if(!line.contains((String.valueOf(lineToAdd.charAt(i))))){
+        for (int i = 0; i < lineToAdd.length(); i++) {
+            if (!line.contains((String.valueOf(lineToAdd.charAt(i))))) {
                 updatedLine += String.valueOf(lineToAdd.charAt(i));
             }
         }
 
         return updatedLine;
     }
+
+
 }

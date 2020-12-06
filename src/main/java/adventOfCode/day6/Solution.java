@@ -11,9 +11,7 @@ public class Solution {
         int count = 0;
         FileManager fileManager = new FileManager();
         List<String> entries = fileManager.get(FILE_PATH);
-        for(String entry: entries){
-            count += entry.length();
-        }
-        System.out.println(count);
+        AnswerManager answerManager = new AnswerManager();
+        System.out.println(answerManager.getAmountOfUnanimousAnswer(entries));
     }
 }

@@ -9,17 +9,19 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class FileManagerTest {
 
+    public static final String PATH = "C:\\Users\\mdeze\\Documents\\Projets\\advent-of-code\\src\\test\\ressources\\adventOfCode\\day6\\entries.txt";
+
     @Test
     void shouldGetStringOfAnswersCorrespondingToGroups() throws FileNotFoundException {
         FileManager filemanager = new FileManager();
-        List<String> entries = filemanager.get("C:\\Users\\mdeze\\Documents\\Projets\\advent-of-code\\src\\test\\ressources\\adventOfCode\\day6\\entries.txt.txt");
+        List<String> entries = filemanager.get(PATH);
         assertThat(entries).hasSize(5);
     }
 
     @Test
     void shouldGetStringOfAnswersWithoutDuplicates() throws FileNotFoundException {
         FileManager filemanager = new FileManager();
-        List<String> entries = filemanager.get("C:\\Users\\mdeze\\Documents\\Projets\\advent-of-code\\src\\test\\ressources\\adventOfCode\\day6\\entries.txt.txt");
-        assertThat(entries.get(2)).isEqualTo("abc");
+        List<String> entries = filemanager.get(PATH);
+        assertThat(entries.get(2)).isEqualTo("a");
     }
 }
