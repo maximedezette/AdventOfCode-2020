@@ -1,6 +1,6 @@
 package adventOfCode.day5;
 
-import java.util.Arrays;
+import java.util.*;
 
 public class BoardingPassManager {
 
@@ -40,6 +40,22 @@ public class BoardingPassManager {
 
         return array;
 
+    }
+
+    public int getMissingSeatId(List<String> passes){
+
+        List<Integer> idList = new ArrayList<>();
+        for (String pass: passes){
+            idList.add(getSeatId(pass));
+        }
+        Collections.sort(idList, Comparator.naturalOrder());
+
+        for(int i=0; i<idList.size(); i++){
+            if(idList.get(i+1) != idList.get(i) + 1){
+                return  idList.get(i) + 1;
+            }
+        }
+        return 0;
     }
 
     public int getSeatId(String pass) {

@@ -17,6 +17,10 @@ public class Solution {
                 maxSeatId = currentSeatId;
             }
         }
+        //part 1
         System.out.println(maxSeatId);
+
+        //part 2
+        System.out.println(boardingPassManager.getMissingSeatId(boardingPasses));
     }
 }
