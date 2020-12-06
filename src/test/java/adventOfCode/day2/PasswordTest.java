@@ -1,6 +1,5 @@
-package day2;
+package adventOfCode.day2;
 
-import adventOfCode.day2.Password;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;

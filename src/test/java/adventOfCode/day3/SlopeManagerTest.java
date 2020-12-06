@@ -1,9 +1,5 @@
-package day3;
+package adventOfCode.day3;
 
-import adventOfCode.day3.FileManager;
-import adventOfCode.day3.Position;
-import adventOfCode.day3.Slope;
-import adventOfCode.day3.SlopeManager;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -11,7 +7,7 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static day3.FileManagerTest.FILE_PATH;
+import static adventOfCode.day3.FileManagerTest.FILE_PATH;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class SlopeManagerTest {

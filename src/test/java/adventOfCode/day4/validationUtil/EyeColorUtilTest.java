@@ -1,4 +1,4 @@
-package day4.validationUtil;
+package adventOfCode.day4.validationUtil;
 
 import adventOfCode.day4.validationUtils.EyeColorUtil;
 import org.junit.jupiter.api.Test;

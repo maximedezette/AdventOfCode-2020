@@ -1,14 +1,11 @@
-package day2;
+package adventOfCode.day2;
 
-import adventOfCode.day2.FileManager;
-import adventOfCode.day2.Password;
-import adventOfCode.day2.PasswordManager;
 import org.junit.jupiter.api.Test;
 
 import java.io.FileNotFoundException;
 import java.util.List;
 
-import static day2.FileManagerTest.FILE_PATH;
+import static adventOfCode.day2.FileManagerTest.FILE_PATH;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class PasswordManagerTest {

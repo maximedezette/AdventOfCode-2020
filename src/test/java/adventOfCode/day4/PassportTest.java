@@ -1,7 +1,5 @@
-package day4;
+package adventOfCode.day4;
 
-import adventOfCode.day4.Passport;
-import adventOfCode.day4.PassportMapper;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigInteger;

@@ -1,6 +1,5 @@
-package day1;
+package adventOfCode.day1;
 
-import adventOfCode.day1.FileManager;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -11,7 +10,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class FileManagerTest {
 
-    public static final String FILE_PATH = "C:\\Users\\mdeze\\Documents\\Projets\\advent-of-code\\src\\test\\ressources\\day1\\entries.txt";
+    public static final String FILE_PATH = "C:\\Users\\mdeze\\Documents\\Projets\\advent-of-code\\src\\test\\ressources\\adventOfCode\\day1\\entries.txt";
 
     private FileManager fileManager;
 

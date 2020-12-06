@@ -1,7 +1,5 @@
-package day2;
+package adventOfCode.day2;
 
-import adventOfCode.day2.FileManager;
-import adventOfCode.day2.Password;
 import org.junit.jupiter.api.Test;
 
 import java.io.FileNotFoundException;
@@ -11,7 +9,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class FileManagerTest {
 
-    public static final String FILE_PATH = "C:\\Users\\mdeze\\Documents\\Projets\\advent-of-code\\src\\test\\ressources\\day2\\entries.txt";
+    public static final String FILE_PATH = "C:\\Users\\mdeze\\Documents\\Projets\\advent-of-code\\src\\test\\ressources\\adventOfCode\\day2\\entries.txt";
 
     @Test
     void shouldGetAllTheEntries() throws FileNotFoundException {

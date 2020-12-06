@@ -1,7 +1,5 @@
-package day1;
+package adventOfCode.day1;
 
-import adventOfCode.day1.ExpenseCalculator;
-import adventOfCode.day1.FileManager;
 import org.junit.jupiter.api.Test;
 
 import java.io.FileNotFoundException;
