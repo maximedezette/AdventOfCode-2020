@@ -12,8 +12,11 @@ public class Solution {
         FileManager fileManager = new FileManager();
         List<BigInteger> inputs = fileManager.get(FILE_PATH);
         XMASManager xmasManager = new XMASManager(25,inputs);
+        BigInteger numberNotFollowingRule = xmasManager.getNumberNotFollowingTheRule();
 
-        System.out.println(xmasManager.getNumberNotFollowingTheRule());
+        System.out.println(numberNotFollowingRule);
+
+        System.out.println(xmasManager.getSumOfExtremaContiguousList(numberNotFollowingRule));
 
     }
 }

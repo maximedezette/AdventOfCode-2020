@@ -2,6 +2,7 @@ package adventOfCode.day9;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class XMASManager {
@@ -34,14 +35,6 @@ public class XMASManager {
         return sums;
     }
 
-    public List<BigInteger> getPreambles() {
-        return preambles;
-    }
-
-    public List<BigInteger> getNumbers() {
-        return numbers;
-    }
-
     public BigInteger getNumberNotFollowingTheRule() {
         for(BigInteger number: numbers){
             if(!sumsOfThePreambles.contains(number)){
@@ -52,5 +45,34 @@ public class XMASManager {
             sumsOfThePreambles = getTheSumsOfThePreambles();
         }
         return new BigInteger("");
+    }
+
+    public List<BigInteger> getContiguousSet(BigInteger invalidNumber) {
+        List<BigInteger> contiguousList = new ArrayList<>();
+
+        for(int i =0; i< inputs.size(); i++){
+            contiguousList.clear();
+            BigInteger sum = new BigInteger("0");
+            int j = i;
+            while (shouldSumNextNumber(invalidNumber, sum, j)){
+                contiguousList.add(inputs.get(j));
+                sum = sum.add(inputs.get(j));
+                j++;
+            }
+
+            if(sum.compareTo(invalidNumber) == 0){
+                return contiguousList;
+            }
+        }
+        return contiguousList;
+    }
+
+    private boolean shouldSumNextNumber(BigInteger invalidNumber, BigInteger sum, int j) {
+        return sum.compareTo(invalidNumber) < 0 && j < inputs.size() && inputs.get(j).compareTo(invalidNumber) != 0;
+    }
+
+    public BigInteger getSumOfExtremaContiguousList(BigInteger invalidNumber){
+        List<BigInteger> contiguousList = getContiguousSet(invalidNumber);
+        return Collections.min(contiguousList).add(Collections.max(contiguousList));
     }
 }
