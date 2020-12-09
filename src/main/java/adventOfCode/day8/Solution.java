@@ -11,8 +11,13 @@ public class Solution {
         FileManager fileManager = new FileManager();
         List<Instruction> instructions = fileManager.get(FILE_PATH);
         InstructionManager instructionManager = new InstructionManager(instructions);
-        instructionManager.play();
 
+        // part 1
+        instructionManager.playWithInterruptionOnError();
+        System.out.println(instructionManager.getAccumulator());
+
+        // part 2
+        instructionManager.playWithMutationOnError();
         System.out.println(instructionManager.getAccumulator());
     }
 }
