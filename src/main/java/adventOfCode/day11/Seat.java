@@ -31,6 +31,22 @@ public class Seat {
 
         return updatedSeat;
     }
+    public Seat updatePartTwo(int adjacentOccupiedSeats) {
+        Seat updatedSeat = new Seat();
+
+        updatedSeat.setStatus(this.status);
+
+        if(this.status != FLOOR) {
+            if (adjacentOccupiedSeats == 0) {
+                updatedSeat.setStatus(OCCUPIED);
+                // 4 in part 1
+            } else if (adjacentOccupiedSeats >= 5) {
+                updatedSeat.setStatus(EMPTY);
+            }
+        }
+
+        return updatedSeat;
+    }
 
     @Override
     public String toString() {

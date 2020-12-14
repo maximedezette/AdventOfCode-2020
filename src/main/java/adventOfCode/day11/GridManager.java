@@ -9,4 +9,13 @@ public class GridManager {
         }
         return emptySeats;
     }
+
+    public static long getSeatsEndingUpOccupiedWithPartTwoRules(Grid grid) {
+        long emptySeats = grid.countOccupiedSeats() + 1;
+        while (grid.countOccupiedSeats() != emptySeats){
+            emptySeats = grid.countOccupiedSeats();
+            grid = grid.updateWithPartTwoRules();
+        }
+        return emptySeats;
+    }
 }

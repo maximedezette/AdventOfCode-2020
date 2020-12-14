@@ -10,8 +10,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class GridTest {
 
-    public static final String FIRST_UPDATE_INPUT = "C:\\Users\\mdeze\\Documents\\Projets\\advent-of-code\\src\\test\\ressources\\adventOfCode\\day11\\firstUpdate.txt";
-    public static final String SECOND_UPDATE_INPUT = "C:\\Users\\mdeze\\Documents\\Projets\\advent-of-code\\src\\test\\ressources\\adventOfCode\\day11\\secondUpdate.txt";
+    public static final String FIRST_UPDATE_INPUT = "C:\\Users\\mdeze\\Documents\\Projets\\advent-of-code\\src\\test\\ressources\\adventOfCode\\day11\\part1\\firstUpdate.txt";
+    public static final String SECOND_UPDATE_INPUT = "C:\\Users\\mdeze\\Documents\\Projets\\advent-of-code\\src\\test\\ressources\\adventOfCode\\day11\\part1\\secondUpdate.txt";
+    public static final String FIRST_EXAMPLE_PART_TWO = "C:\\Users\\mdeze\\Documents\\Projets\\advent-of-code\\src\\test\\ressources\\adventOfCode\\day11\\part2\\example1.txt";
+    public static final String SECOND_EXAMPLE_PART_TWO = "C:\\Users\\mdeze\\Documents\\Projets\\advent-of-code\\src\\test\\ressources\\adventOfCode\\day11\\part2\\example2.txt";
 
     @Test
     void shouldCountNumberOfOccupiedSeats() throws FileNotFoundException {
@@ -63,6 +65,19 @@ public class GridTest {
         List<String> inputAfterFirstUpdate = FileManager.get(FIRST_UPDATE_INPUT);
         Grid grid = new Grid(inputAfterFirstUpdate);
         assertThat(grid.countOccupiedAdjacentSeat(9,9)).isEqualTo(2);
+    }
 
+    @Test
+    void shouldGetOccupiedSeatsInSight() throws FileNotFoundException {
+        List<String> input = FileManager.get(FIRST_EXAMPLE_PART_TWO);
+        Grid grid = new Grid(input);
+        assertThat(grid.countOccupiedSeatsInSight(3,4)).isEqualTo(8);
+    }
+
+    @Test
+    void shouldGetNoOccupiedSeatsWhenNoSight() throws FileNotFoundException {
+        List<String> input = FileManager.get(SECOND_EXAMPLE_PART_TWO);
+        Grid grid = new Grid(input);
+        assertThat(grid.countOccupiedSeatsInSight(3,3)).isEqualTo(0);
     }
 }

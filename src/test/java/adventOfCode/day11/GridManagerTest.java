@@ -16,4 +16,10 @@ public class GridManagerTest {
         Grid grid = new Grid(input);
         assertThat(GridManager.getSeatsEndingUpOccupied(grid)).isEqualTo(37);
     }
+    @Test
+    void shouldGetTheNumberOfSeatsThatEndUpOccupiedWithPartTwoRules() throws FileNotFoundException {
+        List<String> input = FileManager.get(FILE_PATH);
+        Grid grid = new Grid(input);
+        assertThat(GridManager.getSeatsEndingUpOccupiedWithPartTwoRules(grid)).isEqualTo(26);
+    }
 }
