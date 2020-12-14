@@ -11,99 +11,81 @@ public class NavigationComputer {
     public static final String FORWARD = "F";
     public static final String ROTATE_RIGHT = "R";
     public static final String ROTATE_LEFT = "L";
-    List<Action> actionList;
-    String currentType = EAST;
-    int northSouthPosition;
-    int eastWestPosition;
+    private List<Action> actionList;
+    private int northSouthPosition;
+    private int eastWestPosition;
+    private WayPoint wayPoint;
+
 
     public NavigationComputer(List<String> inputs) {
 
         actionList = generateActionList(inputs);
+        wayPoint = new WayPoint();
     }
+
 
     private List<Action> generateActionList(List<String> inputs) {
         List<Action> actionList = new ArrayList<>();
-        for(String inputLine: inputs){
+        for (String inputLine : inputs) {
             String type = String.valueOf(inputLine.charAt(0));
             int value = Integer.parseInt(inputLine.substring(1));
-            Action action = new Action(type,value);
+            Action action = new Action(type, value);
             actionList.add(action);
         }
 
         return actionList;
     }
 
-    public String getCurrentType() {
-        return currentType;
-    }
-
     public int getNorthSouthPosition() {
         return northSouthPosition;
-    }
-
-    public void setNorthSouthPosition(int northSouthPosition) {
-        this.northSouthPosition = northSouthPosition;
     }
 
     public int getEastWestPosition() {
         return eastWestPosition;
     }
 
-    public void setEastWestPosition(int eastWestPosition) {
-        this.eastWestPosition = eastWestPosition;
-    }
-
     public void process(Action action) {
 
-        int numberOfTurnRequired= 0;
+        int numberOfTurnRequired = 0;
         switch (action.getType()) {
             case NORTH:
-                northSouthPosition += action.getValue();
+                wayPoint.addToNorthSouthPosition(action.getValue());
                 break;
             case SOUTH:
-                northSouthPosition -= action.getValue();
+                wayPoint.addToNorthSouthPosition(-action.getValue());
                 break;
             case EAST:
-                eastWestPosition += action.getValue();
+                wayPoint.addToEastWestPosition(action.getValue());
                 break;
             case WEST:
-                eastWestPosition -= action.getValue();
+                wayPoint.addToEastWestPosition(-action.getValue());
                 break;
             case FORWARD:
-                Action substituteAction = new Action(currentType, action.getValue());
-                process(substituteAction);
+                eastWestPosition += wayPoint.getEastWestPosition() * action.getValue();
+                northSouthPosition += wayPoint.getNorthSouthPosition() * action.getValue();
                 break;
             case ROTATE_RIGHT:
                 numberOfTurnRequired = action.getValue() / 90;
-                for (int i = 0; i < numberOfTurnRequired; i++) {
-                    turnBoatFromNinetyDegrees();
-                }
+                wayPoint.turn(numberOfTurnRequired);
                 break;
             case ROTATE_LEFT:
-                numberOfTurnRequired = ( 360 - action.getValue() )/ 90 ;
-                for (int i = 0; i < numberOfTurnRequired; i++) {
-                    turnBoatFromNinetyDegrees();
-                }
+                numberOfTurnRequired = (360 - action.getValue()) / 90;
+                wayPoint.turn(numberOfTurnRequired);
                 break;
         }
     }
 
-    private void turnBoatFromNinetyDegrees() {
-        if (currentType.equals(EAST)) {
-            currentType = SOUTH;
-        } else if (currentType.equals(SOUTH)) {
-            currentType = WEST;
-        } else if (currentType.equals(WEST)) {
-            currentType = NORTH;
-        } else if (currentType.equals(NORTH)) {
-            currentType = EAST;
-        }
+
+
+    public WayPoint getWayPoint() {
+        return wayPoint;
     }
+
 
     public int getManhattanDistance() {
         for (Action action : actionList) {
             process(action);
         }
-        return Math.abs(eastWestPosition) + Math.abs(northSouthPosition) ;
+        return Math.abs(eastWestPosition) + Math.abs(northSouthPosition);
     }
 }

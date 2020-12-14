@@ -30,7 +30,7 @@ public class NavigationComputerTest {
 
         navigationComputer.process(moveNorth);
 
-        assertThat(navigationComputer.getNorthSouthPosition()).isEqualTo(3);
+        assertThat(navigationComputer.getWayPoint().getNorthSouthPosition()).isEqualTo(4);
     }
 
     @Test
@@ -39,7 +39,7 @@ public class NavigationComputerTest {
 
         navigationComputer.process(moveSouth);
 
-        assertThat(navigationComputer.getNorthSouthPosition()).isEqualTo(-3);
+        assertThat(navigationComputer.getWayPoint().getNorthSouthPosition()).isEqualTo(-2);
     }
 
     @Test
@@ -48,7 +48,7 @@ public class NavigationComputerTest {
 
         navigationComputer.process(moveEast);
 
-        assertThat(navigationComputer.getEastWestPosition()).isEqualTo(3);
+        assertThat(navigationComputer.getWayPoint().getEastWestPosition()).isEqualTo(13);
     }
 
     @Test
@@ -57,27 +57,30 @@ public class NavigationComputerTest {
 
         navigationComputer.process(moveWest);
 
-        assertThat(navigationComputer.getEastWestPosition()).isEqualTo(-3);
+        assertThat(navigationComputer.getWayPoint().getEastWestPosition()).isEqualTo(7);
     }
 
     @Test
     void shouldProcessGoingForward()  {
-        Action moveWest = new Action(WEST, 3);
-        Action forward = new Action(FORWARD, 2);
+        Action forward = new Action(FORWARD, 10);
 
-        navigationComputer.process(moveWest);
         navigationComputer.process(forward);
 
-        assertThat(navigationComputer.getEastWestPosition()).isEqualTo(-1);
+        assertThat(navigationComputer.getEastWestPosition()).isEqualTo(100);
+        assertThat(navigationComputer.getNorthSouthPosition()).isEqualTo(10);
     }
 
     @Test
     void shouldProcessRightRotation()  {
-        Action rotateRight = new Action(ROTATE_RIGHT, 180);
+        Action rotateRight = new Action(ROTATE_RIGHT, 90);
 
         navigationComputer.process(rotateRight);
+        navigationComputer.process(rotateRight);
+        navigationComputer.process(rotateRight);
+        navigationComputer.process(rotateRight);
 
-        assertThat(navigationComputer.getCurrentType()).isEqualTo(WEST);
+        assertThat(navigationComputer.getWayPoint().getEastWestPosition()).isEqualTo(10);
+        assertThat(navigationComputer.getWayPoint().getNorthSouthPosition()).isEqualTo(1);
     }
 
     @Test
@@ -86,13 +89,14 @@ public class NavigationComputerTest {
 
         navigationComputer.process(rotateLeft);
 
-        assertThat(navigationComputer.getCurrentType()).isEqualTo(WEST);
+        assertThat(navigationComputer.getWayPoint().getEastWestPosition()).isEqualTo(-10);
+        assertThat(navigationComputer.getWayPoint().getNorthSouthPosition()).isEqualTo(-1);
     }
 
     @Test
     void shouldGetTheManhattanDistance() throws FileNotFoundException {
         List<String> inputs = FileManager.get(FILE_PATH);
         NavigationComputer navigationComputer = new NavigationComputer(inputs);
-        assertThat(navigationComputer.getManhattanDistance()).isEqualTo(25);
+        assertThat(navigationComputer.getManhattanDistance()).isEqualTo(286);
     }
 }
