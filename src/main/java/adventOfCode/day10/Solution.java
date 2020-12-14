@@ -12,5 +12,6 @@ public class Solution {
         AdapterManager adapterManager = new AdapterManager(adapters);
 
         System.out.println(adapterManager.calculateDifferences());
+        System.out.println(adapterManager.getPossibleArrangements());
     }
 }

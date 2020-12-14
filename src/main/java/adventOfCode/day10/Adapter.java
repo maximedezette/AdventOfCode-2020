@@ -8,7 +8,7 @@ public class Adapter implements Comparable<Adapter>{
     }
 
     public boolean canConnect(int jolt) {
-        return  jolt + 3 >= joltage && joltage  >= jolt;
+        return  jolt + 3 >= joltage && joltage  > jolt;
     }
 
     public int getDifference(int jolt) {
